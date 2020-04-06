@@ -1,3 +1,12 @@
 import * as React from 'react';
 
-export default () => <h3>This is real</h3>
+export default class Root extends React.Component {
+  componentDidMount() {
+
+  }
+  render() {
+    return (
+      <h3>Jesus Christ</h3>
+    )
+  }
+}
