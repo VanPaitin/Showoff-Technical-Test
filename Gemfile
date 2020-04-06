@@ -18,8 +18,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # sdks for generating image/avatar urls
 gem 'carrierwave', '~> 2.0'
-gem "fog-aws"
-
+gem 'fog-aws'
+gem 'rest-client'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
