@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :users, only: [] do
+  resources :users, only: :create do
     resources :widgets, only: :index
   end
   resources :widgets, only: [] do

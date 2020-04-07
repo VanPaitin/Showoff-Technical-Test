@@ -3,5 +3,9 @@ module ShowoffApi
     def widgets
       Widget.new
     end
+
+    def users
+      User.new
+    end
   end
 end
