@@ -2,7 +2,9 @@ import * as React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Form, Navbar, Nav, Spinner } from 'react-bootstrap';
-import WidgetsContainer from './WidgetsContainer'
+import WidgetsContainer from './WidgetsContainer';
+import RegisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
 
 const AppContainer = styled.div`
   .form-control {
@@ -13,6 +15,10 @@ const AppContainer = styled.div`
 
 const StyledNav = styled(Nav)`
   margin-left: auto;
+  &.navbar-nav .nav-link {
+    color: white;
+    text-transform: uppercase;
+  }
 `;
 
 const LoadingSpinner = styled.div`
@@ -27,7 +33,9 @@ export default class Root extends React.Component {
     widgets: [],
     loggedIn: false,
     timeoutId: null,
-    loadingWidgets: false
+    loadingWidgets: false,
+    showingLoginModal: false,
+    showingRegisterModal: false
   }
 
   componentDidMount() {
@@ -35,9 +43,8 @@ export default class Root extends React.Component {
   }
 
   fetchWidgets = (params = {}) => {
-    this.setState({ loadingWidgets: true })
     axios.get('/widgets/visible', { params })
-      .then(({ data: { data: { widgets }}}) => {
+      .then(({ data: { widgets }}) => {
         this.setState({ widgets, loadingWidgets: false })
       })
   }
@@ -52,13 +59,15 @@ export default class Root extends React.Component {
   }
 
   searchWidgets = e => {
+    this.setState({ loadingWidgets: true })
+
     const value = e.target.value.trim()
 
     this.clearScheduledSearch()
 
     const timeoutId = setTimeout(() => {
-      value.length ? this.fetchWidgets({ term: value }) : this.fetchWidgets()
-    }, 2000)
+      this.fetchWidgets(value.length ? { term: value } : {})
+    }, 1500)
 
     this.setState({ timeoutId })
   }
@@ -70,9 +79,14 @@ export default class Root extends React.Component {
           <Navbar.Brand href="/">Widgets</Navbar.Brand>
 
           <StyledNav>
-            <Nav.Link href="#home">{this.state.loggedIn ? 'Logout' : 'Login' }</Nav.Link>
-              {!this.state.loggedIn && <Nav.Link href="#features">Register</Nav.Link>}
-            <Nav.Link href="#pricing">Reset Password</Nav.Link>
+            <Nav.Link href="" onClick={() => this.setState({ showingLoginModal: true })}>
+              {this.state.loggedIn ? 'Logout' : 'Login' }
+            </Nav.Link>
+            {!this.state.loggedIn &&
+              <Nav.Link href="" onClick={() => this.setState({ showingRegisterModal: true })}>
+                Register
+              </Nav.Link>}
+            <Nav.Link href="">Reset Password</Nav.Link>
           </StyledNav>
         </Navbar>
 
@@ -88,6 +102,12 @@ export default class Root extends React.Component {
 
           <WidgetsContainer widgets={this.state.widgets} />
         </AppContainer>
+        <RegisterModal
+          open={this.state.showingRegisterModal}
+          toggle={() => this.setState({ showingRegisterModal: false })} />
+        <LoginModal
+          open={this.state.showingLoginModal}
+          toggle={() => this.setState({ showingLoginModal: false })} />
       </>
     )
   }
