@@ -8,7 +8,7 @@ class WidgetsController < ApplicationController
       { params: client_credentials.merge(search_params) }
     )
 
-    render json: response.body, status: 200
+    render json: serialize(response), status: 200
   end
 
   private

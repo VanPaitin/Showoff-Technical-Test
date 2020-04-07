@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
       client_secret: ENV['SHOWOFF_CLIENT_SECRET']
     }
   end
+
+  def serialize(response)
+    JSON.parse(response)['data']
+  end
 end
