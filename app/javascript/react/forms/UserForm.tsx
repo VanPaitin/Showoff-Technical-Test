@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Form from 'react-bootstrap/Form';
 import FormFile from 'react-bootstrap/FormFile'
-import Feedback from 'react-bootstrap/Feedback'
 import Col from 'react-bootstrap/Col'
 import styled from 'styled-components';
 
@@ -60,4 +59,3 @@ export default ({ validated }) => {
     </Form>
   )
 }
-
