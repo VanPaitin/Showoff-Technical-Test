@@ -7,5 +7,9 @@ module ShowoffApi
     def users
       User.new
     end
+
+    def sessions
+      Session.new
+    end
   end
 end

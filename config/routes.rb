@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  resources :sessions, only: :create
+
   resources :users, only: :create do
     resources :widgets, only: :index
   end
+
   resources :widgets, only: [] do
     get 'visible', on: :collection
   end
