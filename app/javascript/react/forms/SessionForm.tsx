@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Form from 'react-bootstrap/Form';
-import styled from 'styled-components';
 import { Label } from '../SharedComponents/StyledWrappers'
 
 export default ({ validated }) =>

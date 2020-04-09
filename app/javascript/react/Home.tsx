@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Form, Spinner } from 'react-bootstrap';
-import { fetchWidgets } from './utilities/widgets';
+import { fetchWidgets } from './Utilities/widgets';
 import {
   AppContainer, LoadingSpinner,
-} from './sharedComponents/StyledWrappers'
-import WidgetsContainer from './sharedComponents/WidgetsContainer';
+} from './SharedComponents/StyledWrappers'
+import WidgetsContainer from './SharedComponents/WidgetsContainer';
 
 export default class Home extends React.Component {
   state = {

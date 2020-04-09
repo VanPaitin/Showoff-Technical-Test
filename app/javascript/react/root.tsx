@@ -5,9 +5,9 @@ import { Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Modal from './Modal';
 import Home from './Home';
-import UserWidgets from './UserWidgets';
+import UserWidgets from './Widgets/UserWidgets';
 
-import { FlashContainer, StyledAlert, StyledFade } from './sharedComponents/StyledWrappers'
+import { FlashContainer, StyledAlert, StyledFade } from './SharedComponents/StyledWrappers'
 
 enum ModalType {
   Session = 'session',
@@ -39,7 +39,6 @@ export default () => {
   const closeModal = ({ message }) => {
     setShowModal(false)
     setAlertMessage(message)
-
     setLoginStatus()
 
     if (message) setTimeout(() => setAlertMessage(null), 2000)
@@ -55,12 +54,12 @@ export default () => {
         </FlashContainer>
       </StyledFade>
 
-      <Navbar loggedIn={loggedIn} openModal={openModal}/>
+      <Navbar loggedIn={loggedIn} openModal={openModal} />
 
       <Switch>
-        <Route path='/user/:id/widgets' component={UserWidgets}/>
+        <Route path='/user/:id/widgets' component={UserWidgets} />
 
-        <Route exact path='/' component={Home}/>
+        <Route exact path='/' component={Home} />
       </Switch>
 
       <Modal

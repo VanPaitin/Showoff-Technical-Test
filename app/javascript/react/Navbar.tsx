@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap';
 
 const StyledNav = styled(Nav)`
@@ -29,17 +29,17 @@ export default ({ loggedIn, openModal }) => {
       <StyledNav>
         {loggedIn ? (
           <>
-            <Nav.Link as={NavLink} to="/user/me/widgets">My widgets</Nav.Link>
+            <Nav.Link as={Link} to="/user/me/widgets">My widgets</Nav.Link>
             <Nav.Link href="" onClick={openLogoutModal}>Logout</Nav.Link>
             <Nav.Link href="" onClick={openChangePasswordModal}>Change Password</Nav.Link>
           </>
         ) : (
-          <>
-            <Nav.Link href="" onClick={openLoginModal}>Login</Nav.Link>
-            <Nav.Link href="" onClick={openResetPasswordModal}>Reset Password</Nav.Link>
-            <Nav.Link href="" onClick={openSignUpModal}>Register</Nav.Link>
-          </>
-        )}
+            <>
+              <Nav.Link href="" onClick={openLoginModal}>Login</Nav.Link>
+              <Nav.Link href="" onClick={openResetPasswordModal}>Reset Password</Nav.Link>
+              <Nav.Link href="" onClick={openSignUpModal}>Register</Nav.Link>
+            </>
+          )}
       </StyledNav>
     </Navbar>
   )

@@ -8,12 +8,12 @@ import {
 import {
   changePassword, resetPassword,
   logout, signUp, login
-} from './utilities/authentication';
+} from './Utilities/authentication';
 
-import UserForm from './forms/UserForm';
-import SessionForm from './forms/SessionForm';
-import PasswordChangeForm from './forms/PasswordChangeForm';
-import ResetPasswordForm from './forms/ResetPasswordForm';
+import UserForm from './Forms/UserForm';
+import SessionForm from './Forms/SessionForm';
+import PasswordChangeForm from './Forms/PasswordChangeForm';
+import ResetPasswordForm from './Forms/ResetPasswordForm';
 
 interface ModalProps {
   open: boolean
@@ -60,7 +60,10 @@ export default class Form extends React.Component<ModalProps> {
     if (modalType === 'logout') {
       this.setState({ loading: true })
       logout().then(
-        () => closeModal({ message: 'Logged out successfully!' })
+        () => {
+          closeModal({ message: 'Logged out successfully!' })
+          location.replace('/')
+        }
       ).finally(() => this.setState({ loading: false }))
     } else {
       const form = document.querySelector('form') as HTMLFormElement
@@ -116,7 +119,7 @@ export default class Form extends React.Component<ModalProps> {
   activeButton = () =>
     this.state.loading ? (
       <Button color="primary" disabled>
-        <Spinner type="grow" color="light" size="sm"/>{' '}
+        <Spinner type="grow" color="light" size="sm" />{' '}
         Loading...
       </Button>
     ) : <Button color="primary" onClick={this.submitForm}>{this.buttonText()}</Button>
@@ -130,7 +133,7 @@ export default class Form extends React.Component<ModalProps> {
 
         <ModalBody>
           <Errors>
-            { this.state.errors.map((error, index) => <li key={index}>{error}</li>)}
+            {this.state.errors.map((error, index) => <li key={index}>{error}</li>)}
           </Errors>
 
           {this.renderForm()}
