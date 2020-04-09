@@ -13,7 +13,7 @@ export default class Home extends React.Component {
     loadingWidgets: false,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchWidgets()
   }
 
@@ -54,10 +54,10 @@ export default class Home extends React.Component {
           size='lg' onChange={this.searchWidgets}
           placeholder='Type here to search for a widget'></Form.Control>
 
-        { this.state.loadingWidgets &&
+        {this.state.loadingWidgets &&
           <LoadingSpinner>
             <Spinner animation="border" variant="primary" /><span> <b>Loading...</b></span>
-          </LoadingSpinner> }
+          </LoadingSpinner>}
 
         <WidgetsContainer widgets={this.state.widgets} />
       </AppContainer>
