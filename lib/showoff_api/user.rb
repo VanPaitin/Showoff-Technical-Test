@@ -12,10 +12,6 @@ module ShowoffApi
       base_url + "/api/v1/users/#{id}/widgets"
     end
 
-    def change_password
-      base_url + '/api/v1/users/me/password'
-    end
-
     def reset_password
       base_url + '/api/v1/users/reset_password'
     end

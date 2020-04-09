@@ -25,14 +25,13 @@ export const logout = () =>
     }
   })
 
-export const changePassword = data => generateSession('/users/change_password', data)
+export const changePassword = data =>
+  post(`${SHOWOFF_API_DOMAIN}/api/v1/users/me/password`, data)
+    .then(({ data: { token } }) =>
+      storage.setItem('token', token)).then(() => Promise.resolve())
 
 export const resetPassword = data => post('/users/reset_password', data)
 
-export const updateUser = data => {
+// export const checkEmail = email => {
 
-}
-
-export const checkEmail = email => {
-
-}
+// }
