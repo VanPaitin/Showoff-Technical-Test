@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import WidgetCard from './WidgetCard';
+import WidgetCard from './WidgetCard'
 
 const WidgetsContainer = styled.div`
   display: flex;
@@ -22,8 +22,17 @@ const WidgetsContainer = styled.div`
   }
 `;
 
-export default ({ widgets }) =>
+type WidgetsContainerProps = {
+  widgets: any[],
+  edit?: (widget) => void
+  deleteWidget?: (id: number) => void
+}
+
+export default ({ widgets, edit, deleteWidget }: WidgetsContainerProps) =>
   <WidgetsContainer>
-    {widgets.map(widget => <WidgetCard key={widget.id} widget={widget} />)}
+    {widgets.length ? widgets.map(widget =>
+      <WidgetCard
+        key={widget.id} widget={widget} edit={widget.owner && edit}
+        deleteWidget={widget.owner && deleteWidget} />) : <h3>There are no widgets, you can help create one</h3>}
   </WidgetsContainer>
 
