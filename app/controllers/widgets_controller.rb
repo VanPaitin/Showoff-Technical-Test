@@ -1,7 +1,9 @@
 class WidgetsController < ApplicationController
   def index
+    query_params = client_credentials.merge(search_params).to_query
+
     response = RestClient.get(
-      ShowoffApi.users.widgets(params[:user_id]) + '?' + client_credentials.to_query,
+      ShowoffApi.users.widgets(params[:user_id]) + '?' + query_params,
       { Authorization: request.headers['Authorization'] },
     )
 
