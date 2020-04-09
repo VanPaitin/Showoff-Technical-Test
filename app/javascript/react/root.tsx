@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as storage from 'localforage';
+import storage from 'localforage';
 import { Switch, Route } from 'react-router-dom';
 
 import Navbar from './Navbar';

@@ -1,4 +1,4 @@
-import * as storage from 'localforage';
+import storage from 'localforage';
 
 import { post } from './requests'
 

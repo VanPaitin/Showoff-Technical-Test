@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as storage from 'localforage';
+import storage from 'localforage';
 import { RouteProps } from 'react-router-dom'
 import styled from 'styled-components'
 import { Form, Spinner, Button } from 'react-bootstrap';

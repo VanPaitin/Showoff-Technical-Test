@@ -1,8 +1,8 @@
 import axios from 'axios';
-import * as storage from 'localforage'
+import storage from 'localforage'
 
-axios.interceptors.request.use(async(config) => {
-	const authTokenData = await storage.getItem('token') as { access_token: string };
+axios.interceptors.request.use(async (config) => {
+  const authTokenData = await storage.getItem('token') as { access_token: string };
 
   config.headers.Authorization = authTokenData ? `Bearer ${authTokenData.access_token}` : null;
 
