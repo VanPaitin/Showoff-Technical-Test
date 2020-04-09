@@ -1,5 +1,11 @@
 class WidgetsController < ApplicationController
   def index
+    response = RestClient.get(
+      ShowoffApi.users.widgets(params[:user_id]) + '?' + client_credentials.to_query,
+      { Authorization: request.headers['Authorization'] },
+    )
+
+    render json: serialize(response), status: 200
   end
 
   def visible

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 export default ({ widget }) =>
@@ -9,6 +10,11 @@ export default ({ widget }) =>
         <Card.Subtitle className='mb-2'>{widget.kind}</Card.Subtitle>
         <Card.Text>{widget.description}</Card.Text>
       </Card.Body>
-      <Card.Footer><span>Created by: </span><b>{widget.user.name}</b></Card.Footer>
+      <Card.Footer>
+        <span>Created by: </span>
+        <Link to={`/user/${widget.user.id}/widgets`}>
+          <b>{widget.user.name}</b>
+        </Link>
+      </Card.Footer>
     </Card>
   </div>
