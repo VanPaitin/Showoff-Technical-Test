@@ -1,10 +1,6 @@
 import * as React from 'react';
 import Form from 'react-bootstrap/Form';
-import styled from 'styled-components';
-
-const Label = styled(Form.Label)`
-  font-weight: bold;
-`;
+import { Label } from '../SharedComponents/StyledWrappers'
 
 export default ({ validated }) =>
   <Form noValidate validated={validated}>

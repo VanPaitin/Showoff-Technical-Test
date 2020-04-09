@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { Alert, Fade } from 'react-bootstrap';
+import { Alert, Fade, Form } from 'react-bootstrap';
 
 export const AppContainer = styled.div`
   .form-control {
     margin: 40px auto;
     width: 60%;
   }
+`;
+
+export const Label = styled(Form.Label)`
+  font-weight: bold;
 `;
 
 export const LoadingSpinner = styled.div`
