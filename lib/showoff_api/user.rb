@@ -11,5 +11,13 @@ module ShowoffApi
     def show(id)
       base_url + "/api/v1/users/#{id}"
     end
+
+    def change_password
+      base_url + '/api/v1/users/me/password'
+    end
+
+    def reset_password
+      base_url + '/api/v1/users/reset_password'
+    end
   end
 end

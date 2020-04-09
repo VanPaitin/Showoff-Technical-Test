@@ -68,8 +68,10 @@ export default class Form extends React.Component<ModalProps> {
       if (form.checkValidity() === true) {
         const formData = new FormData(form);
         const token = document.querySelector<HTMLMetaElement>('meta[name="csrf-token"]').content;
+        const emailOrName = formData.get('[user]first_name') || formData.get('[user]email')
+
         formData.set('authenticity_token', token)
-        const emailOrName = formData.get('user[first_name]') || formData.get('user[email]')
+
         this.setState({ loading: true })
 
         requests[modalType](formData)

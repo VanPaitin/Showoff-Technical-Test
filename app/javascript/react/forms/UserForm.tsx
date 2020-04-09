@@ -21,7 +21,7 @@ export default ({ validated }) =>
       </Form.Group>
       <Form.Group as={Col}>
         <Label>Last name</Label>
-        <Form.Control placeholder="Last name" name='[user]last_name'/>
+        <Form.Control placeholder="Last name" name='[user]last_name' required/>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
     </Form.Row>

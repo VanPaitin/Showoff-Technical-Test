@@ -25,18 +25,14 @@ export const logout = () =>
     }
   })
 
+export const changePassword = data => generateSession('/users/change_password', data)
+
+export const resetPassword = data => post('/users/reset_password', data)
+
 export const updateUser = data => {
 
 }
 
 export const checkEmail = email => {
 
-}
-
-export const changePassword = password => {
-  return Promise.resolve()
-}
-
-export const resetPassword = () => {
-  return Promise.resolve()
 }

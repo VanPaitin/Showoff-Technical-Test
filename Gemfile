@@ -27,6 +27,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'pry-nav'
   gem 'rspec-rails'
 end
 

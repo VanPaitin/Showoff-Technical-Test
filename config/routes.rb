@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: :create do
     resources :widgets, only: :index
+    post 'change_password', on: :collection
+    post 'reset_password', on: :collection
   end
 
   resources :widgets, only: [] do
