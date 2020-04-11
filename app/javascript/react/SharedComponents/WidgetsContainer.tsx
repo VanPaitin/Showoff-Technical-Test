@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import WidgetCard from './WidgetCard'
+import WidgetCard from './WidgetCard';
+import Widget from '../Widgets/Widget';
 
 const WidgetsContainer = styled.div`
   display: flex;
@@ -22,17 +23,21 @@ const WidgetsContainer = styled.div`
   }
 `;
 
-type WidgetsContainerProps = {
-  widgets: any[],
-  edit?: (widget) => void
-  deleteWidget?: (id: number) => void
+interface WidgetAction {
+  widget: Widget
+  type: 'upsert' | 'delete'
 }
 
-export default ({ widgets, edit, deleteWidget }: WidgetsContainerProps) =>
+type WidgetsContainerProps = {
+  widgets: Widget[],
+  widgetAction?: (params: WidgetAction) => void
+}
+
+export default ({ widgets, widgetAction }: WidgetsContainerProps) =>
   <WidgetsContainer>
     {widgets.length ? widgets.map(widget =>
       <WidgetCard
-        key={widget.id} widget={widget} edit={widget.owner && edit}
-        deleteWidget={widget.owner && deleteWidget} />) : <h3>There are no widgets, you can help create one</h3>}
+        key={widget.id} widget={widget} widgetAction={widgetAction} />) :
+      <h3>There are no widgets, you can help create one</h3>}
   </WidgetsContainer>
 

@@ -3,4 +3,5 @@ export default class Widget {
   name: string = ''
   description: string = ''
   kind: 'visible' | 'hidden' = 'visible'
+  owner: boolean
 }

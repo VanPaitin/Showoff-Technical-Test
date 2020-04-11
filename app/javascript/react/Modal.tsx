@@ -43,6 +43,14 @@ const alertMessage = emailOrName => ({
   resetPassword: `Password reset email sent to ${emailOrName}. Please check your email address for further instructions`
 })
 
+const buttonText = {
+  changePassword: 'Update Password',
+  logout: 'Log out',
+  resetPassword: 'Reset Password',
+  session: 'Sign In',
+  user: 'Sign Up'
+}
+
 export default class Form extends React.Component<ModalProps> {
   state = { validated: false, loading: false }
 
@@ -96,18 +104,6 @@ export default class Form extends React.Component<ModalProps> {
     }
   }
 
-  buttonText() {
-    const { modalType } = this.props
-
-    switch (modalType) {
-      case ModalType.Session: return 'Sign In'
-      case ModalType.User: return 'Sign Up'
-      case ModalType.ChangePassword: return 'Update Password'
-      case ModalType.ResetPassword: return 'Reset Password'
-      case ModalType.Logout: return 'Log out'
-    }
-  }
-
   wrapValidationApi = Form => <Form validated={this.state.validated} />
 
   activeButton = () =>
@@ -116,14 +112,14 @@ export default class Form extends React.Component<ModalProps> {
         <Spinner type="grow" color="light" size="sm" />{' '}
         Loading...
       </Button>
-    ) : <Button color="primary" onClick={this.submitForm}>{this.buttonText()}</Button>
+    ) : <Button color="primary" onClick={this.submitForm}>{buttonText[this.props.modalType]}</Button>
 
   render() {
-    const { open, closeModal } = this.props
+    const { open, closeModal, modalType } = this.props
 
     return (
       <Modal isOpen={open} toggle={closeModal} onClosed={this.resetValidated}>
-        <ModalHeader toggle={closeModal}>{this.buttonText()}</ModalHeader>
+        <ModalHeader toggle={closeModal}>{buttonText[modalType]}</ModalHeader>
 
         <ModalBody>
           {this.renderForm()}

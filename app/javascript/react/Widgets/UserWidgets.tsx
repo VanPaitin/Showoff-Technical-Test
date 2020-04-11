@@ -2,10 +2,11 @@ import * as React from 'react';
 import storage from 'localforage';
 import { RouteProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { Form, Spinner, Button } from 'react-bootstrap';
+import { Button, Input, Spinner } from 'reactstrap';
+
 import { AppContainer, LoadingSpinner, StyledFade, StyledAlert } from '../SharedComponents/StyledWrappers'
 import WidgetsContainer from '../SharedComponents/WidgetsContainer';
-import { fetchUserWidgets, deleteWidget } from '../Utilities/widgets'
+import { fetchUserWidgets } from '../Utilities/widgets'
 import WidgetModal from './WidgetModal';
 import Widget from './Widget';
 
@@ -19,6 +20,7 @@ export default class UserWidgets extends React.Component<RouteProps> {
     timeoutId: null,
     loadingWidgets: false,
     showingModal: false,
+    modalType: null,
     activeWidget: new Widget(),
     alertMessage: null
   }
@@ -61,23 +63,14 @@ export default class UserWidgets extends React.Component<RouteProps> {
 
   closeModal = () => this.setState({ showingModal: false }, this.fetchWidgets)
 
-  openModal = widget => this.setState({ showingModal: true, activeWidget: widget })
+  openModal = ({ widget, type }) =>
+    this.setState({ showingModal: true, activeWidget: widget, modalType: type })
 
-  deleteWidget = widgetId => {
-    if (confirm('Are you sure to delete this widget')) {
-      deleteWidget(widgetId)
-        .then(() => {
-          this.setAlertMessage('Widget successfully deleted!')
-          this.fetchWidgets()
-        })
-    }
-  }
-
-  setAlertMessage = (message) => {
+  setAlertMessage = (message) =>
     this.setState({ alertMessage: message }, () => {
       setTimeout(() => this.setState({ alertMessage: null }), 2000)
     })
-  }
+
 
   render() {
     return (
@@ -89,22 +82,25 @@ export default class UserWidgets extends React.Component<RouteProps> {
             </StyledAlert>
           </StyledFade>
           {this.props.match.params.id == 'me' &&
-            <StyledButton color="primary" onClick={() => this.openModal(new Widget())} size='md'>Create Widget</StyledButton>}
-          <Form.Control
-            size='lg' onChange={this.searchWidgets}
-            placeholder='Type here to search for a widget'></Form.Control>
+            <StyledButton color='primary' onClick={() => this.openModal({ widget: new Widget(), type: 'upsert' })} size='md'>
+              Create Widget
+            </StyledButton>}
+          <Input
+            bsSize='lg' onChange={this.searchWidgets}
+            placeholder='Type here to search for a widget'></Input>
 
           {this.state.loadingWidgets &&
             <LoadingSpinner>
-              <Spinner animation="border" variant="primary" /><span> <b>Loading...</b></span>
+              <Spinner color="primary" /><span> <b>Loading...</b></span>
             </LoadingSpinner>}
 
-          <WidgetsContainer widgets={this.state.widgets} edit={this.openModal} deleteWidget={this.deleteWidget} />
+          <WidgetsContainer widgets={this.state.widgets} widgetAction={this.openModal} />
         </AppContainer>
         <WidgetModal
           setAlertMessage={this.setAlertMessage}
           modal={this.state.showingModal}
-          toggle={this.closeModal} widget={this.state.activeWidget} />
+          toggle={this.closeModal} widget={this.state.activeWidget}
+          modalType={this.state.modalType} />
       </>
     )
   }
