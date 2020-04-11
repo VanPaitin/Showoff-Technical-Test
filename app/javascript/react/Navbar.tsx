@@ -1,43 +1,39 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-import { Navbar, Nav } from 'react-bootstrap';
+import { Nav, Navbar, NavbarBrand, NavLink } from 'reactstrap';
 
 const StyledNav = styled(Nav)`
   margin-left: auto;
-  &.navbar-nav .nav-link {
+  .nav-link {
     color: white;
     text-transform: uppercase;
+    cursor: pointer;
+    &.bordered {
+      border-style: solid;
+    }
   }
 `;
 
 export default ({ loggedIn, openModal }) => {
-  const openLoginModal = () => openModal('session')
-
-  const openSignUpModal = () => openModal('user')
-
-  const openChangePasswordModal = () => openModal('changePassword')
-
-  const openResetPasswordModal = () => openModal('resetPassword')
-
-  const openLogoutModal = () => openModal('logout')
+  const triggerModal = e => openModal(e.target.dataset.action)
 
   return (
-    <Navbar bg="primary" variant="dark">
-      <Navbar.Brand href="/">Widgets</Navbar.Brand>
+    <Navbar color="primary" dark={true}>
+      <NavbarBrand tag={Link} to="/">Widgets</NavbarBrand>
 
       <StyledNav>
         {loggedIn ? (
           <>
-            <Nav.Link as={Link} to="/user/me/widgets">My widgets</Nav.Link>
-            <Nav.Link href="" onClick={openLogoutModal}>Logout</Nav.Link>
-            <Nav.Link href="" onClick={openChangePasswordModal}>Change Password</Nav.Link>
+            <Link to="/user/me/widgets" className='nav-link'>My widgets</Link>
+            <NavLink data-action='logout' onClick={triggerModal} className='bordered'>Logout</NavLink>
+            <NavLink data-action='changePassword' onClick={triggerModal}>Change Password</NavLink>
           </>
         ) : (
             <>
-              <Nav.Link href="" onClick={openLoginModal}>Login</Nav.Link>
-              <Nav.Link href="" onClick={openResetPasswordModal}>Reset Password</Nav.Link>
-              <Nav.Link href="" onClick={openSignUpModal}>Register</Nav.Link>
+              <NavLink data-action='session' onClick={triggerModal}>Login</NavLink>
+              <NavLink data-action='resetPassword' onClick={triggerModal} className='bordered'>Reset Password</NavLink>
+              <NavLink data-action='user' onClick={triggerModal}>Sign up</NavLink>
             </>
           )}
       </StyledNav>

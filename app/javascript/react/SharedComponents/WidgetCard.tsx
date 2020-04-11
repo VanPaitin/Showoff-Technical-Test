@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardFooter, CardText, CardSubtitle, CardTitle } from 'reactstrap';
 
 export default ({ widget, widgetAction }) => {
-  const triggerAction = e => {
-    widgetAction({ widget, type: e.target.dataset.action })
-  }
+  const triggerAction = e => widgetAction({ widget, type: e.target.dataset.action })
 
   return (
     <div>
@@ -20,7 +18,7 @@ export default ({ widget, widgetAction }) => {
           <Link to={`/user/${widget.owner ? 'me' : widget.user.id}/widgets`}>
             <b>{widget.user.name}</b>
           </Link>
-          {widgetAction && (
+          {widget.owner && (
             <div>
               <Button
                 color="primary" size="sm" data-action='upsert'

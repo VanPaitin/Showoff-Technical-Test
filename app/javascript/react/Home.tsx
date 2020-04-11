@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, Spinner } from 'react-bootstrap';
+import { Input, Spinner } from 'reactstrap'
 import { fetchWidgets } from './Utilities/widgets';
 import {
   AppContainer, LoadingSpinner,
@@ -50,13 +50,13 @@ export default class Home extends React.Component {
   render() {
     return (
       <AppContainer className='container'>
-        <Form.Control
-          size='lg' onChange={this.searchWidgets}
-          placeholder='Type here to search for a widget'></Form.Control>
+        <Input
+          bsSize='lg' onChange={this.searchWidgets}
+          placeholder='Type here to search for a widget'></Input>
 
         {this.state.loadingWidgets &&
           <LoadingSpinner>
-            <Spinner animation="border" variant="primary" /><span> <b>Loading...</b></span>
+            <Spinner color="primary" /><span> <b>Loading...</b></span>
           </LoadingSpinner>}
 
         <WidgetsContainer widgets={this.state.widgets} />

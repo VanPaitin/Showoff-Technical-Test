@@ -29,6 +29,12 @@ export default class UserWidgets extends React.Component<RouteProps> {
     storage.getItem('token').then(data => data ? this.fetchWidgets() : location.replace('/'))
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.fetchWidgets()
+    }
+  }
+
   fetchWidgets = (params = {}) => {
     const { id } = this.props.match.params
 

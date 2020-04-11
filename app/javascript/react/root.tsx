@@ -57,7 +57,7 @@ export default () => {
       <Switch>
         <Route path='/user/:id/widgets' component={UserWidgets} />
 
-        <Route exact path='/' component={Home} />
+        <Route path='/' component={Home} />
       </Switch>
 
       <Modal

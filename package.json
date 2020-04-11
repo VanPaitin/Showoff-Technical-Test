@@ -17,7 +17,6 @@
     "localforage": "^1.7.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "reactstrap": "^8.4.1",
