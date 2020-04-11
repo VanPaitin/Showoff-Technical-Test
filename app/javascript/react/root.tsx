@@ -7,7 +7,7 @@ import Modal from './Modal';
 import Home from './Home';
 import UserWidgets from './Widgets/UserWidgets';
 
-import { FlashContainer, StyledAlert, StyledFade } from './SharedComponents/StyledWrappers'
+import { StyledAlert, StyledFade } from './SharedComponents/StyledWrappers'
 
 enum ModalType {
   Session = 'session',
@@ -47,11 +47,9 @@ export default () => {
   return (
     <div>
       <StyledFade in={!!alertMessage} unmountOnExit>
-        <FlashContainer>
-          <StyledAlert variant='success'>
-            {alertMessage}
-          </StyledAlert>
-        </FlashContainer>
+        <StyledAlert>
+          {alertMessage}
+        </StyledAlert>
       </StyledFade>
 
       <Navbar loggedIn={loggedIn} openModal={openModal} />

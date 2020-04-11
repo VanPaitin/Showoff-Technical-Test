@@ -3,7 +3,7 @@ import storage from 'localforage';
 import { RouteProps } from 'react-router-dom'
 import styled from 'styled-components'
 import { Form, Spinner, Button } from 'react-bootstrap';
-import { AppContainer, LoadingSpinner, StyledFade, FlashContainer, StyledAlert } from '../SharedComponents/StyledWrappers'
+import { AppContainer, LoadingSpinner, StyledFade, StyledAlert } from '../SharedComponents/StyledWrappers'
 import WidgetsContainer from '../SharedComponents/WidgetsContainer';
 import { fetchUserWidgets, deleteWidget } from '../Utilities/widgets'
 import WidgetModal from './WidgetModal';
@@ -84,11 +84,9 @@ export default class UserWidgets extends React.Component<RouteProps> {
       <>
         <AppContainer className='container'>
           <StyledFade in={!!this.state.alertMessage} unmountOnExit>
-            <FlashContainer>
-              <StyledAlert variant='success'>
-                {this.state.alertMessage}
-              </StyledAlert>
-            </FlashContainer>
+            <StyledAlert>
+              {this.state.alertMessage}
+            </StyledAlert>
           </StyledFade>
           {this.props.match.params.id == 'me' &&
             <StyledButton color="primary" onClick={() => this.openModal(new Widget())} size='md'>Create Widget</StyledButton>}

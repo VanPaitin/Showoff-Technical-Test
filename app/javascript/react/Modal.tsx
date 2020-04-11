@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import {
   Button, Modal, ModalHeader,
   ModalBody, ModalFooter, Spinner
@@ -29,13 +28,6 @@ enum ModalType {
   Logout = 'logout'
 }
 
-const Errors = styled.ul`
-  margin-bottom: 0
-  margin-top: 1rem;
-  color: red;
-  font-style: italic
-`;
-
 const requests = {
   user: signUp,
   session: login,
@@ -52,7 +44,9 @@ const alertMessage = emailOrName => ({
 })
 
 export default class Form extends React.Component<ModalProps> {
-  state = { validated: false, errors: [], loading: false }
+  state = { validated: false, loading: false }
+
+  resetValidated = () => this.setState({ validated: false })
 
   submitForm = () => {
     const { modalType, closeModal } = this.props
@@ -107,7 +101,7 @@ export default class Form extends React.Component<ModalProps> {
 
     switch (modalType) {
       case ModalType.Session: return 'Sign In'
-      case ModalType.User: return 'Register'
+      case ModalType.User: return 'Sign Up'
       case ModalType.ChangePassword: return 'Update Password'
       case ModalType.ResetPassword: return 'Reset Password'
       case ModalType.Logout: return 'Log out'
@@ -128,14 +122,10 @@ export default class Form extends React.Component<ModalProps> {
     const { open, closeModal } = this.props
 
     return (
-      <Modal isOpen={open} toggle={closeModal}>
+      <Modal isOpen={open} toggle={closeModal} onClosed={this.resetValidated}>
         <ModalHeader toggle={closeModal}>{this.buttonText()}</ModalHeader>
 
         <ModalBody>
-          <Errors>
-            {this.state.errors.map((error, index) => <li key={index}>{error}</li>)}
-          </Errors>
-
           {this.renderForm()}
         </ModalBody>
 

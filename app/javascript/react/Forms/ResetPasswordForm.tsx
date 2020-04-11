@@ -1,18 +1,18 @@
 import * as React from 'react';
-import Form from 'react-bootstrap/Form';
-import { Label } from '../SharedComponents/StyledWrappers'
+import { Input, FormFeedback, FormGroup, FormText } from 'reactstrap'
+import { Label, StyledForm } from '../SharedComponents/StyledWrappers'
 
 export default ({ validated }) =>
-  <Form noValidate validated={validated}>
-    <Form.Group controlId="formBasicEmail">
+  <StyledForm noValidate className={validated && 'was-validated'}>
+    <FormGroup>
       <Label>Email address</Label>
-      <Form.Control type="email" placeholder="Enter email" name='[user]email' required />
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>
+      <Input type="email" placeholder="Enter email" name='[user]email' required />
+      <FormFeedback valid>Looks good!</FormFeedback>
+      <FormFeedback>
         Please enter your email!
-        </Form.Control.Feedback>
-      <Form.Text className="text-muted">
+      </FormFeedback>
+      <FormText className="text-muted">
         We'll never share your email with anyone else.
-      </Form.Text>
-    </Form.Group>
-  </Form>
+      </FormText>
+    </FormGroup>
+  </StyledForm>

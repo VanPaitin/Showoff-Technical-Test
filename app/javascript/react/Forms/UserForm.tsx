@@ -1,52 +1,55 @@
 import * as React from 'react';
-import Form from 'react-bootstrap/Form';
-import FormFile from 'react-bootstrap/FormFile'
-import Col from 'react-bootstrap/Col'
-import { Label } from '../SharedComponents/StyledWrappers'
+import { Col, Input, Row, FormFeedback, FormGroup, FormText } from 'reactstrap'
+import { StyledForm, Label } from '../SharedComponents/StyledWrappers'
 
 export default ({ validated }) =>
-  <Form noValidate validated={validated}>
-    <Form.Row>
-      <Form.Group as={Col}>
-        <Label>First name</Label>
-        <Form.Control placeholder="First name" name='[user]first_name' type='text' required />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        <Form.Control.Feedback type='invalid'>
-          Please enter your first name!
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group as={Col}>
-        <Label>Last name</Label>
-        <Form.Control placeholder="Last name" name='[user]last_name' required />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      </Form.Group>
-    </Form.Row>
+  <StyledForm noValidate className={validated && 'was-validated'}>
+    <Row className='form-row'>
+      <Col md={6}>
+        <FormGroup>
+          <Label>First name</Label>
+          <Input placeholder="First name" name='[user]first_name' type='text' required />
+          <FormFeedback valid>Looks good!</FormFeedback>
+          <FormFeedback>
+            Please enter your first name!
+          </FormFeedback>
+        </FormGroup>
+      </Col>
 
-    <Form.Group controlId="formBasicEmail">
+      <Col md={6}>
+        <FormGroup>
+          <Label>Last name</Label>
+          <Input placeholder="Last name" name='[user]last_name' required />
+          <FormFeedback valid>Looks good!</FormFeedback>
+          <FormFeedback>
+            Please enter your last name!
+          </FormFeedback>
+        </FormGroup>
+      </Col>
+    </Row>
+
+    <FormGroup>
       <Label>Email address</Label>
-      <Form.Control type="email" placeholder="Enter email" name='[user]email' required />
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>
+      <Input type="email" placeholder="Enter email" name='[user]email' required />
+      <FormFeedback valid>Looks good!</FormFeedback>
+      <FormFeedback>
         Please enter your email!
-        </Form.Control.Feedback>
-      <Form.Text className="text-muted">
+      </FormFeedback>
+      <FormText className="text-muted">
         We'll never share your email with anyone else.
-      </Form.Text>
-    </Form.Group>
+      </FormText>
+    </FormGroup>
 
-    <Form.Group controlId="formBasicPassword">
+    <FormGroup>
       <Label>Password</Label>
-      <Form.Control type="password" placeholder="Password" name='[user]password' required />
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>
-        Please enter a password!
-        </Form.Control.Feedback>
-    </Form.Group>
-    <Form.Group controlId="formBasicFile">
-      <FormFile>
-        <Label>Avatar</Label>
-        <FormFile.Input name='file' />
-      </FormFile>
-    </Form.Group>
-  </Form>
-
+      <Input type="password" placeholder="Password" name='[user]password' required minLength='8' />
+      <FormFeedback valid>Looks good!</FormFeedback>
+      <FormFeedback>
+        Please enter a password of not less than 8 characters!
+      </FormFeedback>
+    </FormGroup>
+    <FormGroup>
+      <Label>Avatar</Label>
+      <Input type='file' name='file' />
+    </FormGroup>
+  </StyledForm>

@@ -1,20 +1,20 @@
 import * as React from 'react';
-import Form from 'react-bootstrap/Form';
-import { Label } from '../SharedComponents/StyledWrappers'
+import { Input, FormGroup, FormFeedback } from 'reactstrap'
+import { StyledForm, Label } from '../SharedComponents/StyledWrappers'
 
 export default ({ validated }) =>
-  <Form noValidate validated={validated}>
-    <Form.Group controlId="formBasicPassword">
+  <StyledForm noValidate className={validated && 'was-validated'}>
+    <FormGroup>
       <Label>Current Password</Label>
-      <Form.Control type="password" placeholder="Password" name='[user]current_password' required />
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>Please enter a password!</Form.Control.Feedback>
-    </Form.Group>
+      <Input type="password" placeholder="Enter your current password" name='[user]current_password' required />
+      <FormFeedback valid>Looks good!</FormFeedback>
+      <FormFeedback>Please enter your current password!</FormFeedback>
+    </FormGroup>
 
-    <Form.Group>
+    <FormGroup>
       <Label>New Password</Label>
-      <Form.Control type="password" placeholder="Password" name='[user]new_password' required />
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>Please enter a password!</Form.Control.Feedback>
-    </Form.Group>
-  </Form>
+      <Input type="password" placeholder="Enter a new password" name='[user]new_password' minLength={8} required />
+      <FormFeedback valid>Looks good!</FormFeedback>
+      <FormFeedback>Please enter a new password not less than 8 characters!</FormFeedback>
+    </FormGroup>
+  </StyledForm>

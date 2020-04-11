@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Alert, Fade, Form } from 'react-bootstrap';
+import { Fade, Alert, Form, Label as FormLabel } from 'reactstrap';
 
 export const AppContainer = styled.div`
   .form-control {
@@ -8,8 +8,14 @@ export const AppContainer = styled.div`
   }
 `;
 
-export const Label = styled(Form.Label)`
+export const Label = styled(FormLabel)`
   font-weight: bold;
+`;
+
+export const StyledForm = styled(Form)`
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const LoadingSpinner = styled.div`
@@ -19,22 +25,18 @@ export const LoadingSpinner = styled.div`
   }
 `;
 
-export const FlashContainer = styled.div`
-  position: absolute;
-  width: 90%;
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
 export const StyledAlert = styled(Alert)`
   font-size: 19px;
-  font-weight: bold;
   letter-spacing: 1px;
   text-align: center;
   word-spacing: 10px;
 `;
 
 export const StyledFade = styled(Fade)`
+  position: absolute;
+  width: 50%;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
 `;
