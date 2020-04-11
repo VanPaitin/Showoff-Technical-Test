@@ -1,6 +1,5 @@
 import axios from 'axios';
-// import storage from 'localforage'
-// @ts-ignore
+
 const storage = window.localforage
 
 axios.interceptors.request.use(async (config) => {

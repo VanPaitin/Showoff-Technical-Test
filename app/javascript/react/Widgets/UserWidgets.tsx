@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import storage from 'localforage';
 import { RouteProps } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, Input, Spinner } from 'reactstrap';
@@ -13,7 +12,7 @@ import Widget from './Widget';
 const StyledButton = styled(Button)`
   position: absolute;
 `
-// @ts-ignore
+
 const storage = window.localforage
 
 export default class UserWidgets extends React.Component<RouteProps> {

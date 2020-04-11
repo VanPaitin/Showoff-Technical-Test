@@ -107,7 +107,7 @@ rspec
 ```
 ### Deployment
 
-Any merge to master will trigger a build to heroku
+Any merge to master will trigger a build to [heroku](https://showoff-widgets-api-client.herokuapp.com/).
 
 ### Contributing
 
