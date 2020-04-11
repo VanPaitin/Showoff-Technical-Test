@@ -1,5 +1,5 @@
 import * as React from 'react';
-import storage from 'localforage';
+// import storage from 'localforage';
 import { Switch, Route } from 'react-router-dom';
 
 import Navbar from './Navbar';
@@ -8,6 +8,8 @@ import Home from './Home';
 import UserWidgets from './Widgets/UserWidgets';
 
 import { StyledAlert, StyledFade } from './SharedComponents/StyledWrappers'
+// @ts-ignore
+const storage = window.localforage
 
 enum ModalType {
   Session = 'session',

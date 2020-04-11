@@ -1,5 +1,7 @@
 import axios from 'axios';
-import storage from 'localforage'
+// import storage from 'localforage'
+// @ts-ignore
+const storage = window.localforage
 
 axios.interceptors.request.use(async (config) => {
   const authTokenData = await storage.getItem('token') as { access_token: string };

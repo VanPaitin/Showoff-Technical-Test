@@ -10,6 +10,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Root from '../react/root';
 
 document.addEventListener('DOMContentLoaded', () => {

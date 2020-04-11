@@ -1,8 +1,10 @@
-import storage from 'localforage';
+// import storage from 'localforage';
 
 import { post } from './requests'
 
 const SHOWOFF_API_DOMAIN = process.env.SHOWOFF_API_DOMAIN
+// @ts-ignore
+const storage = window.localforage
 
 const generateSession = (url, data) =>
   post(url, data).then(({ user, token }) =>
